@@ -1,0 +1,7 @@
+title: $:/plugins/gt6796c/graph-tw5/readme
+
+This is a TiddlyWiki plugin for creating simple graphs.
+
+It is completely self-contained, and doesn't need an Internet connection in order to work. It works both in the browser and under Node.js.
+
+[[Source code|https://github.com/gt6796c/graph-tw5]]
