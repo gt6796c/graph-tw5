@@ -1,21 +1,17 @@
-# mermaid-tw5
+# graph-tw5
 
-# wrapper for mermaid
-https://knsv.github.io/mermaid/
+# Simple Linear Graphing Library
 
-place the <$mermaid> widget and then use the mermaid syntax with in the text.
+place the <$graph> widget and then define a system of equations to graph
 
 ~~~~
-<$mermaid text="
-        graph LR
-            A-->B
-            B-->C
-            C-->A
-            D-->C
-"><$mermaid>
+<$graph colors='["red","blue","green"]' unitsPerTick="2" minX="0" minY="-6" maxY="6">
+5 * Math.sin(x)
+1/x
+x*x+x
+</$graph>
 ~~~~
 
 
-An alternative method is to make the Tiddler type to be ``text/vnd.tiddlywiki.mermaid``.
-You can also try putting the mermaid syntax within the <$mermaid> element, but this does not work as well due to TW5 parsing.
+An alternative method is to make the Tiddler type to be ``text/vnd.tiddlywiki.graph``.
 
