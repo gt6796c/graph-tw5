@@ -3,14 +3,14 @@ title: $:/plugins/gt6796c/graph-tw5/example
 Notation
 
 ```
-<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" text="
+<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
 return 5 * Math.sin(x)
     ">
 </$graph>
 ```
 Results
 
-<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" text="
+<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
 5 * Math.sin(x)
     ">
 </$graph>
@@ -18,7 +18,7 @@ Results
 Notation for multiple functions in one graph
 
 ```
-<$graph colors='["red","blue","green"]' unitsPerTick="2" minX="0" minY="-6" maxY="6">
+<$graph color='["red","blue","green"]' unitsPerTick="2" minX="0" minY="-6" maxY="6">
 5 * Math.sin(x)
 1/x
 x*x+x
@@ -26,7 +26,7 @@ x*x+x
 ```
 Results
 
-<$graph colors='["red","blue","green"]' unitsPerTick="2" minX="0" minY="-6" maxY="6">
+<$graph color='["red","blue","green"]' unitsPerTick="2" minX="0" minY="-6" maxY="6">
 5 * Math.sin(x)
 1/x
 x*x+x

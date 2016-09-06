@@ -5,3 +5,11 @@ This is a TiddlyWiki plugin for creating simple graphs.
 It is completely self-contained, and doesn't need an Internet connection in order to work. It works both in the browser and under Node.js.
 
 [[Source code|https://github.com/gt6796c/graph-tw5]]
+
+!Dependencies:
+;This plugin requires:
+*[[rocklib Plugin|https://gt6796c.github.io]]
+
+! History
+;0.1.2
+*Fixed single color attributes and fixed example to use //color// instead of //colors//

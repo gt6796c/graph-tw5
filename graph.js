@@ -140,8 +140,11 @@ module-type: lib
         context.beginPath();
         context.moveTo(this.minX, equation(this.minX));
 
+        var result;
         for(var x = this.minX + this.iteration; x <= this.maxX; x += this.iteration) {
-          context.lineTo(x, equation(x));
+          result = equation(x.toFixed(4));
+          if(isFinite(result))
+            context.lineTo(x, equation(x));
         }
 
         context.restore();
@@ -166,6 +169,6 @@ module-type: lib
         context.scale(this.scaleX, -this.scaleY);
       };
 
-    exports.graph = new Graph();
+    exports.graph = Graph;
 
 })();
