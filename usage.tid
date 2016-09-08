@@ -1,9 +1,11 @@
 title: $:/plugins/gt6796c/graph-tw5/usage
 
 This widget allows the user to create simple graphs and display them in a tiddler. The equation will be provided an 'x' value
-and should return the 'y' value. Multiple Equations can be specified on separate lines to represent a system of equations.
+and should return the 'y' value. Multiple Equations can be specified on separate lines to represent a system of equations. Points can
+be represented by defining the point's coordinates in the form of an array. Arrays can be nested to allow for multiple points
+to be the same color. (See examples)
 
-The equation body can either be placed in the "text" attribute or as the body of the widget.
+The equation body can either be placed in the "equation" attribute or as the body of the widget.
 
 The following attributes are customizable for the widget:
 
@@ -37,3 +39,4 @@ Note the number of colors & thicknesses should match the number of equations spe
 
 !!Notes
 *The body of the text is parsed as a Tiddler. If you need conflicting elements, use either the ``text`` attribute on the widget or set the type field to ``text/vnd.tiddlywiki.graph`` and transclude the whole Tiddler
+** In particular, the Javascript array of array syntax will be parsed as a Tiddler Title unless you leave an empty space between the two opening brackets.

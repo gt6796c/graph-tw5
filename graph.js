@@ -47,10 +47,11 @@ module-type: lib
 
       Graph.prototype.drawXAxis = function() {
         var context = this.context;
+          var ypos = this.canvas.height - this.centerY;
         context.save();
         context.beginPath();
-        context.moveTo(0, this.centerY);
-        context.lineTo(this.canvas.width, this.centerY);
+        context.moveTo(0, ypos);
+        context.lineTo(this.canvas.width, ypos);
         context.strokeStyle = this.axisColor;
         context.lineWidth = 2;
         context.stroke();
@@ -66,10 +67,10 @@ module-type: lib
         xPos = this.centerX - xPosIncrement;
         unit = -1 * this.unitsPerTick;
         while(xPos > 0) {
-          context.moveTo(xPos, this.centerY - this.tickSize / 2);
-          context.lineTo(xPos, this.centerY + this.tickSize / 2);
+          context.moveTo(xPos, ypos - this.tickSize / 2);
+          context.lineTo(xPos, ypos + this.tickSize / 2);
           context.stroke();
-          context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
+          context.fillText(unit, xPos, ypos + this.tickSize / 2 + 3);
           unit -= this.unitsPerTick;
           xPos = Math.round(xPos - xPosIncrement);
         }
@@ -78,10 +79,10 @@ module-type: lib
         xPos = this.centerX + xPosIncrement;
         unit = this.unitsPerTick;
         while(xPos < this.canvas.width) {
-          context.moveTo(xPos, this.centerY - this.tickSize / 2);
-          context.lineTo(xPos, this.centerY + this.tickSize / 2);
+          context.moveTo(xPos, ypos - this.tickSize / 2);
+          context.lineTo(xPos, ypos + this.tickSize / 2);
           context.stroke();
-          context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
+          context.fillText(unit, xPos, ypos + this.tickSize / 2 + 3);
           unit += this.unitsPerTick;
           xPos = Math.round(xPos + xPosIncrement);
         }
@@ -90,6 +91,7 @@ module-type: lib
 
       Graph.prototype.drawYAxis = function() {
         var context = this.context;
+          var ypos = this.canvas.height - this.centerY;
         context.save();
         context.beginPath();
         context.moveTo(this.centerX, 0);
@@ -106,7 +108,7 @@ module-type: lib
         context.textBaseline = 'middle';
 
         // draw top tick marks
-        yPos = this.centerY - yPosIncrement;
+        yPos = ypos - yPosIncrement;
         unit = this.unitsPerTick;
         while(yPos > 0) {
           context.moveTo(this.centerX - this.tickSize / 2, yPos);
@@ -118,7 +120,7 @@ module-type: lib
         }
 
         // draw bottom tick marks
-        yPos = this.centerY + yPosIncrement;
+        yPos = ypos + yPosIncrement;
         unit = -1 * this.unitsPerTick;
         while(yPos < this.canvas.height) {
           context.moveTo(this.centerX - this.tickSize / 2, yPos);
@@ -140,11 +142,30 @@ module-type: lib
         context.beginPath();
         context.moveTo(this.minX, equation(this.minX));
 
-        var result;
-        for(var x = this.minX + this.iteration; x <= this.maxX; x += this.iteration) {
-          result = equation(x.toFixed(4));
-          if(isFinite(result))
-            context.lineTo(x, equation(x));
+        var result = equation(this.minX.toFixed(4));
+        // see if they've passed an array for points
+        if (result instanceof Array)
+        {
+          // if what they sent is not an array of arrays (multiple points)
+          // go ahead and wrap it so we have one code path
+          var points = result[0] instanceof Array ? result : [result];
+          var w = this.scaleY*this.iteration/3;
+          var z = this.scaleX*this.iteration/3;
+          for (var pi=0;pi<points.length;++pi)
+          {
+            var px = points[pi][0];
+            var py = points[pi][1];
+            context.fillStyle = color;
+            context.fillRect(px-w,py-z,2*w,2*z);
+          }
+
+        }
+        else {
+          for (var x = this.minX + this.iteration; x <= this.maxX; x += this.iteration) {
+            result = equation(x.toFixed(4));
+            if (isFinite(result))
+              context.lineTo(x, equation(x));
+          }
         }
 
         context.restore();
@@ -159,7 +180,7 @@ module-type: lib
         var context = this.context;
 
         // move context to center of canvas
-        this.context.translate(this.centerX, this.centerY);
+        this.context.translate(this.centerX, this.canvas.height - this.centerY);
 
         /*
          * stretch grid to fit the canvas window, and
