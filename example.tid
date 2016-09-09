@@ -53,15 +53,15 @@ You can even do things like limits on your functions like this:
 (Note that the entire clause must not have any newlines in it)
 
 ```
-<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
-x < Math.PI/2 ? undefined : x > 5*Math.PI/2 ? undefined : 5 * Math.sin(x)
-    ">
+<$graph color='blue' thickness='1' bounds="[0,-6,10,6]" equation="
+x < /*lower*/ Math.PI/2 ? undefined : /*upper*/ x > 5*Math.PI/2 ? undefined : /*function*/ 5 * Math.sin(x)
+">
 </$graph>
 ```
 
 Results
 
-<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
-x < Math.PI/2 ? undefined : x > 5*Math.PI/2 ? undefined : 5 * Math.sin(x)
-    ">
-
+<$graph color='blue' thickness='1' bounds="[0,-6,10,6]" equation="
+x < /*lower*/ Math.PI/2 ? undefined : /*upper*/ x > 5*Math.PI/2 ? undefined : /*function*/ 5 * Math.sin(x)
+">
+</$graph>
