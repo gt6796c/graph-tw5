@@ -48,3 +48,20 @@ x+3
 [2,2]
 [ [3,2],[4,1],[2,5] ]
 </$graph>
+
+You can even do things like limits on your functions like this:
+(Note that the entire clause must not have any newlines in it)
+
+```
+<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
+x < Math.PI/2 ? undefined : x > 5*Math.PI/2 ? undefined : 5 * Math.sin(x)
+    ">
+</$graph>
+```
+
+Results
+
+<$graph color='blue' thickness='1' minX="0" minY="-6" maxY="6" equation="
+x < Math.PI/2 ? undefined : x > 5*Math.PI/2 ? undefined : 5 * Math.sin(x)
+    ">
+

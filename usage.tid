@@ -10,9 +10,9 @@ The equation body can either be placed in the "equation" attribute or as the bod
 The following attributes are customizable for the widget:
 
 ; minX - integer
-: defaults to -10
+: defaults to -1
 ; minY - integer
-: defaults to -10
+: defaults to -1
 ; maxX - integer
 : defaults to 10
 ; maxY - integer
@@ -27,16 +27,20 @@ The following attributes are customizable for the widget:
 : defaults to 2
 ; unitsPerTick
 : defaults to 1
+; bounds - integer array
+: no default 2 elements sets the minX & minY. 4 elements sets minX, minY, maxX and maxY
 
 The following attributes are for systems of equations:
 
-;colors - json array of colors e.g. ['red','green','blue']
+;color - json array of colors e.g. ['red','green','blue']
 : defaults to using value of 'color' attribute defined above
-;thicknesses - json array of integers e.g. [2,2,1]
+;thickness - json array of integers e.g. [2,2,1]
 : defaults to using value of 'thickness' attribute defined above
 
-Note the number of colors & thicknesses should match the number of equations specified.
+Note the number of colors & thicknesses should match the number of equations specified. If there are more equations specified, random colors will
+be assigned.
 
 !!Notes
 *The body of the text is parsed as a Tiddler. If you need conflicting elements, use either the ``text`` attribute on the widget or set the type field to ``text/vnd.tiddlywiki.graph`` and transclude the whole Tiddler
 ** In particular, the Javascript array of array syntax will be parsed as a Tiddler Title unless you leave an empty space between the two opening brackets.
+* If you author a Tiddler with the Content type ``text/vnd.tiddlywiki.graph`` CamelCased variables may be assigned by using a 'dot' notation. (e.g. minX would be graph-min.x)

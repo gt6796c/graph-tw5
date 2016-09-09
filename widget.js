@@ -39,8 +39,8 @@ module-type: widget
         var canvas = rocklib.getCanvas(this,tag,"canvas");
         try {
             var options = {}
-            options.minX = -10;
-            options.minY = -10;
+            options.minX = -1;
+            options.minY = -1;
             options.maxX = 10;
             options.maxY = 10;
             options.color = '#000';
@@ -48,6 +48,20 @@ module-type: widget
             options.unitsPerTick = 1;
 
             rocklib.getOptions(this, tag, options);
+            if (options.hasOwnProperty('bounds'))
+            {
+                var bounds = options['bounds']
+                if (bounds.length == 2 || bounds.length == 4)
+                {
+                    options.minX = bounds[0];
+                    options.minY = bounds[1];
+                    if (bounds.length == 4)
+                    {
+                        options.maxX = bounds[2];
+                        options.maxY = bounds[3];
+                    }
+                }
+            }
             rocklib.hue = 0;
             options.canvas = canvas;
             graph.configure(options);
