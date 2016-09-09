@@ -2,7 +2,7 @@
     "title": "$:/plugins/gt6796c/graph-tw5",
     "description": "Simple graphing library",
     "author": "Nathaniel Jones",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "core-version": ">=5.0.8",
     "plugin-type": "plugin",
     "list" : "readme usage example license"
